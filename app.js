@@ -91,3 +91,57 @@ document.getElementById("shareBtn").addEventListener("click",async()=>{
  try{if(navigator.share)await navigator.share(data);else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);alert("लिंक कॉपी हो गया। अब WhatsApp/Facebook पर भेजें।");}else prompt("लिंक कॉपी करें:",location.href);}
  catch(e){if(e.name!=="AbortError")alert("शेयर नहीं हुआ। ब्राउज़र के Share विकल्प से कोशिश करें।");}
 });
+/* Extra touch fireworks + scroll parallax */
+(() => {
+  let lastFirework = 0;
+
+  // Screen background पर टैप करने से आतिशबाज़ी
+  document.addEventListener("pointerdown", (event) => {
+    const target = event.target;
+
+    // Buttons, links और form fields के मौजूदा काम को न रोकें
+    if (target.closest("button, a, input, label, textarea, select")) return;
+
+    const now = Date.now();
+    if (now - lastFirework < 350) return;
+    lastFirework = now;
+
+    if (typeof fireworks === "function") {
+      fireworks(65);
+    }
+  }, { passive: true });
+
+  // Scroll से हल्का parallax effect
+  let scheduled = false;
+
+  function updateParallax() {
+    const maxScroll = Math.max(
+      1,
+      document.documentElement.scrollHeight - window.innerHeight
+    );
+
+    const progress = Math.min(1, window.scrollY / maxScroll);
+    const offset = Math.round(progress * 24);
+
+    document.documentElement.style.setProperty(
+      "--parallax-y",
+      `${offset}px`
+    );
+
+    document.querySelectorAll(".ambient").forEach((layer, index) => {
+      const direction = index === 0 ? -1 : 1;
+      layer.style.transform =
+        `translate3d(0, ${window.scrollY * 0.08 * direction}px, 0)`;
+    });
+
+    scheduled = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(updateParallax);
+  }, { passive: true });
+
+  updateParallax();
+})();
