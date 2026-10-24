@@ -108,3 +108,126 @@ body {
     animation: none !important;
   }
 }
+/* Bhaiyalal's Diwali walking parade */
+.bhaiya-parade {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  bottom: 12px;
+  width: 100%;
+  pointer-events: none;
+  animation: bhaiyaWalkAcross 16s linear infinite;
+}
+
+.bhaiya-characters {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  width: max-content;
+  padding: 0 12px;
+}
+
+.little-boy,
+.gift-dog {
+  position: relative;
+  font-size: clamp(35px, 10vw, 58px);
+  transform-origin: bottom center;
+  animation: characterWalk .38s ease-in-out infinite alternate;
+}
+
+.gift-dog {
+  animation-delay: -.19s;
+}
+
+.boy-face,
+.dog-face {
+  display: block;
+  filter: drop-shadow(0 5px 5px #0005);
+}
+
+.boy-gift {
+  position: absolute;
+  top: -7px;
+  left: -9px;
+  font-size: 23px;
+  animation: giftBounce .7s ease-in-out infinite alternate;
+}
+
+.dog-gifts {
+  position: absolute;
+  top: -19px;
+  left: -2px;
+  display: flex;
+  gap: 0;
+  font-size: 22px;
+  animation: giftBounce .55s ease-in-out infinite alternate;
+}
+
+.dog-gifts span:nth-child(2) {
+  animation: giftBounce .8s ease-in-out infinite alternate-reverse;
+}
+
+.dog-gifts span:nth-child(3) {
+  animation: giftBounce .6s ease-in-out infinite alternate;
+}
+
+.bhaiya-message {
+  position: absolute;
+  bottom: 76px;
+  left: 12px;
+  max-width: min(280px, 78vw);
+  background: #fff9e8;
+  color: #6b2d00;
+  border: 2px solid #ffc84b;
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+  box-shadow: 0 4px 20px #ffb52e55;
+  animation: messagePop 2.5s ease-in-out infinite;
+}
+
+.bhaiya-message::after {
+  content: "";
+  position: absolute;
+  left: 25px;
+  bottom: -9px;
+  width: 14px;
+  height: 14px;
+  background: #fff9e8;
+  border-right: 2px solid #ffc84b;
+  border-bottom: 2px solid #ffc84b;
+  transform: rotate(45deg);
+}
+
+@keyframes bhaiyaWalkAcross {
+  0%   { transform: translateX(-210px); }
+  100% { transform: translateX(calc(100vw + 220px)); }
+}
+
+@keyframes characterWalk {
+  from { transform: translateY(0) rotate(-4deg); }
+  to   { transform: translateY(-7px) rotate(4deg); }
+}
+
+@keyframes giftBounce {
+  from { transform: translateY(0) rotate(-7deg); }
+  to   { transform: translateY(-5px) rotate(8deg); }
+}
+
+@keyframes messagePop {
+  0%, 100% { opacity: 1; transform: translateY(0) scale(1); }
+  50% { opacity: .92; transform: translateY(-3px) scale(1.025); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bhaiya-parade,
+  .little-boy,
+  .gift-dog,
+  .dog-gifts,
+  .boy-gift,
+  .bhaiya-message {
+    animation: none;
+  }
+}
