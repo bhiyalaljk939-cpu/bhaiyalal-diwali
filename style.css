@@ -9,3 +9,102 @@ body:before{content:"✦  ✧  ·  ✦  ✧  ·  ✦";position:fixed;inset:12% -
 .gift-two .gift-emoji{filter:drop-shadow(0 0 12px #ff5c63)}
 .gift-three .gift-emoji{filter:drop-shadow(0 0 12px #ff68c5)}
 .gift-four .gift-emoji{filter:drop-shadow(0 0 12px #ffcf54)}
+/* Extra Diwali animations */
+:root {
+  --parallax-y: 0px;
+}
+
+body {
+  perspective: 900px;
+}
+
+.hero h1 {
+  transform: translateY(var(--parallax-y));
+  text-shadow:
+    0 2px 0 #b97825,
+    0 5px 0 #70401c,
+    0 0 22px #ffca4a66;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from { filter: drop-shadow(0 0 3px #ffb52e44); }
+  to   { filter: drop-shadow(0 0 18px #ffbd4d); }
+}
+
+/* Diya glow and flickering flame effect */
+.diya {
+  display: inline-block;
+  position: relative;
+  animation: diyaFloat 2.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px #ff9d22)
+          drop-shadow(0 0 28px #ffb72e88);
+}
+
+.diya::after {
+  content: "";
+  position: absolute;
+  width: 23px;
+  height: 34px;
+  left: 50%;
+  top: 1px;
+  transform: translateX(-50%);
+  border-radius: 60% 40% 55% 45%;
+  background: radial-gradient(ellipse at 50% 70%,
+    #fffbd0 0%, #ffd84a 35%, #ff7b16aa 70%, transparent 74%);
+  filter: blur(2px);
+  opacity: .72;
+  pointer-events: none;
+  animation: flameFlicker .18s ease-in-out infinite alternate;
+}
+
+@keyframes diyaFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+@keyframes flameFlicker {
+  from { transform: translateX(-50%) scale(.8, .9) rotate(-5deg); }
+  to   { transform: translateX(-50%) scale(1.1, 1.12) rotate(5deg); }
+}
+
+/* Gifts float gently in 3D */
+.gift {
+  transform-style: preserve-3d;
+  animation: giftHover 4s ease-in-out infinite;
+}
+
+.gift:nth-child(even) {
+  animation-delay: -2s;
+}
+
+.gift:active {
+  transform: scale(.94) rotateX(8deg);
+}
+
+@keyframes giftHover {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+
+/* Background parallax layers */
+.ambient {
+  transition: transform .15s ease-out;
+}
+
+.story, .gifts, .share, .profile {
+  transform: translateY(calc(var(--parallax-y) * -0.12));
+  transition: transform .12s linear;
+}
+
+/* Keep motion comfortable on small screens */
+@media (max-width: 620px) {
+  .hero h1 { text-shadow: 0 0 16px #ffbd4d66; }
+  .gift { animation-duration: 5s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1, .diya, .diya::after, .gift {
+    animation: none !important;
+  }
+}
