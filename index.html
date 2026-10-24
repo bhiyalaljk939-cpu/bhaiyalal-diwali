@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10091f">
+<meta name="description" content="C.G Bhaiya.com — दिवाली गिफ्ट और शुभकामनाएँ">
+<title>C.G Bhaiya.com | Diwali Gifts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="fireworks" aria-hidden="true"></canvas>
+<div class="ambient a1"></div><div class="ambient a2"></div>
+<header><a class="logo" href="#">✨ C.G Bhaiya.com</a><span class="tag">🪔 Diwali Special</span></header>
+<main>
+<section class="hero">
+  <div class="diya" aria-hidden="true">🪔</div>
+  <p class="eyebrow">✨ रोशनी • खुशियाँ • अपनों का प्यार ✨</p>
+  <h1>Welcome to<br><span>Bhaiyalal Offers</span><br><em>in Diwali</em></h1>
+  <p class="sub">आपके लिए आया है खुशियों और सरप्राइज़ से भरा दिवाली गिफ्ट!</p>
+  <div class="visitor-box">
+    <label for="visitorName">अपना नाम लिखें</label>
+    <input id="visitorName" maxlength="50" autocomplete="name" placeholder="जैसे: राहुल कुमार">
+    <label class="consent"><input id="consent" type="checkbox"><span>मैं सहमति देता/देती हूँ कि मेरा लिखा नाम और विज़िट का समय इस दिवाली वेबसाइट के मालिक के पास रिकॉर्ड हो। यह जानकारी केवल वेबसाइट विज़िट रिकॉर्ड के लिए उपयोग होगी।</span></label>
+    <button id="startBtn" class="gold-btn">शुभकामनाएँ पाएँ ✨</button>
+    <p class="privacy-note">नाम रिकॉर्ड करना वैकल्पिक है। सहमति नहीं देंगे तो भी गिफ्ट खोल सकते हैं। कोई फोन नंबर या लोकेशन नहीं माँगी जाती।</p>
+  </div>
+  <p id="greeting" class="greeting" aria-live="polite">आप सभी को आने वाली दिवाली की हार्दिक शुभकामनाएँ! 🎆</p>
+</section>
+<section class="story panel">
+  <h2>🪔 दिवाली की छोटी-सी कहानी</h2>
+  <p>दीपों की रोशनी हर घर में खुशियाँ लाए।<br>हर दिल में प्यार और उम्मीद के फूल खिल जाएँ।<br>जीवन से दुखों का अँधेरा दूर हो।<br>आपके घर में सुख, शांति और समृद्धि भरपूर हो।</p>
+</section>
+<section class="panel gifts">
+  <h2>🎁 अपना गिफ्ट चुनें</h2><p class="muted">गिफ्ट पर टैप करें और आतिशबाज़ी के साथ अपना सरप्राइज़ खोलें!</p>
+  <div class="gift-grid">
+    <button class="gift gift-one" data-gift="1" aria-label="गिफ्ट 1 खोलें"><span class="gift-emoji">🎁</span><b>सरप्राइज़ बॉक्स</b><small>टैप करके खोलें</small></button>
+    <button class="gift gift-two" data-gift="2" aria-label="गिफ्ट 2 खोलें"><span class="gift-emoji">🧧</span><b>शुभ लाल लिफाफा</b><small>टैप करके खोलें</small></button>
+    <button class="gift gift-three" data-gift="3" aria-label="गिफ्ट 3 खोलें"><span class="gift-emoji">💝</span><b>प्यार का गिफ्ट</b><small>टैप करके खोलें</small></button>
+    <button class="gift gift-four" data-gift="4" aria-label="गिफ्ट 4 खोलें"><span class="gift-emoji">🪙</span><b>समृद्धि का गिफ्ट</b><small>टैप करके खोलें</small></button>
+  </div>
+  <div id="giftResult" class="gift-result" hidden aria-live="polite"></div>
+</section>
+<section class="share panel">
+  <div><h2>💌 खुशियाँ शेयर करें</h2><p class="muted">दोस्तों और परिवार को दिवाली गिफ्ट लिंक भेजें।</p></div>
+  <button id="shareBtn" class="gold-btn">लिंक शेयर करें ↗</button>
+</section>
+<section class="profile panel">
+  <div class="avatar">CG</div><div><h2>C.G Bhaiya.com</h2><p class="muted">आप सभी को Happy Diwali! 🎇</p><a id="facebookLink" href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook प्रोफाइल खोलें ↗</a><small>अपना Facebook लिंक app.js में बदलें।</small></div>
+</section>
+<p id="status" class="status" aria-live="polite"></p>
+</main>
+<footer>Made with ❤️ by C.G Bhaiya.com <br>✨ शुभ दीपावली ✨</footer>
+<div id="modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card"><button id="closeModal" class="close" aria-label="बंद करें">×</button><div class="modal-icon">🎆</div><h2 id="modalTitle">Happy Diwali!</h2><p id="modalText"></p><button id="okBtn" class="gold-btn">धन्यवाद 🎁</button></div>
+</div>
+<!-- Firebase SDK; app.js will use it only after you add your Firebase web config. -->
+<script type="module" src="app.js"></script>
+</body>
+</html>

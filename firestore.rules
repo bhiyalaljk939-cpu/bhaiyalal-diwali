@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /diwaliVisits/{visitId} {
+      // Visitors can add only consented, small records. Public reads are blocked.
+      allow create: if request.resource.data.keys().hasOnly([
+          'name', 'consent', 'consentTextVersion', 'createdAt', 'page'
+        ])
+        && request.resource.data.consent == true
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 50
+        && request.resource.data.consentTextVersion is string
+        && request.resource.data.page == 'diwali-gifts';
+      // Only inspect records in Firebase Console while using this starter setup.
+      allow read, update, delete: if false;
+    }
+  }
+}
