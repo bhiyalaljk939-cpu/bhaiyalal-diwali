@@ -231,3 +231,42 @@ body {
     animation: none;
   }
 }
+
+/* Facebook connect button */
+.facebook-connect {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  margin: 16px auto;
+  border: 1px solid #78a9ff;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1877f2, #0754b8);
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0 0 20px #1877f255;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.facebook-connect:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 0 28px #1877f299;
+}
+
+.facebook-logo {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #fff;
+  color: #1877f2;
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 26px;
+}
