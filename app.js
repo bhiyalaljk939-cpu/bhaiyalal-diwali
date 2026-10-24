@@ -145,3 +145,23 @@ document.getElementById("shareBtn").addEventListener("click",async()=>{
 
   updateParallax();
 })();
+/* Rotating Bhaiyalal greeting messages */
+(() => {
+  const message = document.getElementById("bhaiyaMessage");
+  if (!message) return;
+
+  const greetings = [
+    "Hi! मैं भैयालाल हूँ! 👦🎁",
+    "आप सभी को दीपावली की शुभकामनाएँ! 🪔",
+    "मेरे डॉग के गिफ्ट देखिए! 🐕🎁",
+    "खुश रहिए, मुस्कुराते रहिए! ✨",
+    "Happy Diwali from Bhaiyalal! 🎆"
+  ];
+
+  let index = 0;
+
+  window.setInterval(() => {
+    index = (index + 1) % greetings.length;
+    message.textContent = greetings[index];
+  }, 3500);
+})();
